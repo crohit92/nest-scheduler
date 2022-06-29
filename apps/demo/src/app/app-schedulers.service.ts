@@ -11,8 +11,17 @@ export class AppSchedulersService {
       cron: '* * * * *',
       enabled: true,
     },
-      this.appService.getData.bind(this)
-    )
+      this.appService.getData.bind(this),
+      true
+    );
+    // this.scheduler.enqueue({
+    //   name: 'Greeting',
+    //   cron: '* * * * *',
+    //   enabled: true,
+    // },
+    //   this.appService.getData.bind(this),
+    //   true
+    // )
   }
 
 }

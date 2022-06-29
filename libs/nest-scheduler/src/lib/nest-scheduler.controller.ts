@@ -26,4 +26,8 @@ export class JobSchedulerController {
   async disableJob(@Param('id') id: string) {
     await this.scheduler.disable(id);
   }
+  @Put('enable/:id')
+  async enableJob(@Param('id') id: string) {
+    await this.scheduler.enable(id);
+  }
 }

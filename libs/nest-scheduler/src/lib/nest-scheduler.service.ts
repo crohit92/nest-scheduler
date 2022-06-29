@@ -8,9 +8,7 @@ export class JobSchedulerService {
   constructor(private readonly storage: JobStorageService) { }
   async enqueue(job: ScheduledJob, handler: (now: Date) => void, runImmidiately = false) {
     if (this.jobNames.has(job.name)) {
-      console.error(`Job with name: '${job.name}' already exist.`);
-      console.error(`Skipping '${job.name}'.`);
-      return;
+      throw `Job with name: '${job.name}' already exist.`;
     }
     this.jobNames.add(job.name);
     const allJobs = await this.storage.read();
@@ -30,16 +28,15 @@ export class JobSchedulerService {
       let task: ScheduledTask;
       const existingJob = allJobs[existingJobIndex];
       // if this job is enabled in store
+      job.enabled = existingJob.enabled;
       if (existingJob.enabled) {
         // schedule this task --
         task = schedule(job.cron, handler);
-
       } else {
         // else schedule the task and pause it immidiately
         // so it can be started via the api.
-        task = schedule(job.cron, handler, {
-          scheduled: false
-        });
+        task = schedule(job.cron, handler);
+        task.stop()
       }
       // update the task id in store, since on scheduling
       // the job, scheduler will assgn a new id
@@ -60,8 +57,8 @@ export class JobSchedulerService {
 
   async disable(id: string) {
     // If this task id is scheduled, then stop it
-    const tasks = getTasks();
-    const task = tasks.find(t => (t as any).options.name === id);
+    const tasks = getTasks() as unknown as Map<string, ScheduledTask>;
+    const task = tasks.get(id)
     task?.stop();
     // and update the store with proper status
     const allJobs = await this.allJobs();
@@ -74,8 +71,8 @@ export class JobSchedulerService {
 
   async enable(id: string) {
     // If this task id is scheduled, then start it
-    const tasks = getTasks();
-    const task = tasks.find(t => (t as any).options.name === id);
+    const tasks = getTasks() as unknown as Map<string, ScheduledTask>;
+    const task = tasks.get(id)
     task?.start();
     // and update the store with proper status
     const allJobs = await this.allJobs();
