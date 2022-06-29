@@ -12,7 +12,8 @@ export class JobStorageService {
   }
 
   async read(): Promise<ScheduledJob[]> {
-    return JSON.parse(await readFile(this.createIfNotExists(this.filePath), 'utf8') ?? '[]');
+    const content = (await readFile(this.createIfNotExists(this.filePath), 'utf8')) ?? '[]';
+    return JSON.parse(content || '[]');
   }
 
   private createIfNotExists(path: string) {

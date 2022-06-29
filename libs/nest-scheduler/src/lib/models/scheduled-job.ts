@@ -8,8 +8,10 @@ export class ScheduledJob {
     this.id = job.id;
     this.cron = job.cron;
     this.name = job.name;
+    this.enabled = true;
   }
-  id: string
+  id?: string
   name: string;
   cron: string;
+  enabled: boolean;
 }
