@@ -8,7 +8,7 @@ export class AppSchedulersService {
     private readonly appService: AppService) {
     this.scheduler.enqueue({
       name: 'Greeting',
-      cron: '* * * * *',
+      cron: '*/5 * * * * *',
       enabled: true,
     },
       this.appService.getData.bind(this),

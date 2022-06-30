@@ -22,11 +22,17 @@ export class JobSchedulerController {
     return await this.scheduler.enqueue(job, () => { });
   }
 
-  @Put('disable/:id')
+  @Put(':id/run')
+  async run(@Param('id') id: string) {
+    await this.scheduler.run(id);
+  }
+
+  @Put(':id/disable')
   async disableJob(@Param('id') id: string) {
     await this.scheduler.disable(id);
   }
-  @Put('enable/:id')
+
+  @Put(':id/enable')
   async enableJob(@Param('id') id: string) {
     await this.scheduler.enable(id);
   }

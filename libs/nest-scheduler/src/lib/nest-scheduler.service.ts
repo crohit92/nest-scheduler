@@ -55,6 +55,11 @@ export class JobSchedulerService {
     return await this.storage.read();
   }
 
+  async run(id: string) {
+    const tasks = getTasks() as unknown as Map<string, ScheduledTask>;
+    const task = tasks.get(id);
+    (task as any)?._task?.execute(new Date());
+  }
   async disable(id: string) {
     // If this task id is scheduled, then stop it
     const tasks = getTasks() as unknown as Map<string, ScheduledTask>;
