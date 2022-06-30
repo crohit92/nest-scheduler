@@ -21,7 +21,9 @@ export class JobSchedulerService {
       job.id = (task as any).options.name;
       allJobs.push(new ScheduledJob(job));
       await this.storage.write(allJobs);
-
+      if (runImmidiately) {
+        handler(new Date());
+      }
     } else {
       // If this job already exist in store
       // this will happen if the app service is restarted
@@ -32,6 +34,9 @@ export class JobSchedulerService {
       if (existingJob.enabled) {
         // schedule this task --
         task = schedule(job.cron, handler);
+        if (runImmidiately) {
+          handler(new Date());
+        }
       } else {
         // else schedule the task and pause it immidiately
         // so it can be started via the api.
@@ -44,9 +49,7 @@ export class JobSchedulerService {
       allJobs[existingJobIndex] = job;
       await this.storage.write(allJobs);
     }
-    if (runImmidiately) {
-      handler(new Date());
-    }
+
     console.log(`Job enqued: ${job.name}`);
   }
 
