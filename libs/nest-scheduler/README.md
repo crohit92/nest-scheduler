@@ -6,7 +6,8 @@ used in this project is [node-cron](https://www.npmjs.com/package/node-cron).
 ## Setup:
 
 Setting up this library requires you to perform the following steps:
-1. Import the module in your project.
+1. Install `node-cron` in your project using `npm i node-cron --save`
+2. Import the module in your project.
    
   ```
     import { Module } from '@nestjs/common';
@@ -24,7 +25,7 @@ Setting up this library requires you to perform the following steps:
     export class AppModule { }
 
   ```
-2. Import the scheduler service in one of your global service from where you will schedule jobs
+3. Import the scheduler service in one of your global service from where you will schedule jobs
 
   ```
     import { Injectable } from "@nestjs/common";
