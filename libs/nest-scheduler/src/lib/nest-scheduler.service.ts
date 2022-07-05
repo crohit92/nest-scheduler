@@ -42,8 +42,12 @@ export class JobSchedulerService {
       job.id = (task as any).options.name;
       allJobs.push(new ScheduledJob(job));
       await this.storage.write(allJobs);
-      if (runImmidiately) {
-        handler(new Date());
+      if(job.enabled) {
+        if (runImmidiately) {
+          handler(new Date());
+        }
+      } else {
+        task.stop();
       }
     } else {
       // If this job already exist in store

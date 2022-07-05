@@ -11,16 +11,10 @@ export class JobSchedulerController {
     return await this.scheduler.allJobs();
   }
 
-  /**
-   * @depricated This method should not be used to create jobs
-   * since for a job
-   * @param job
-   * @returns
-   */
-  @Post()
-  async createJob(@Body() job: ScheduledJob) {
-    return await this.scheduler.enqueue(job, () => { });
-  }
+  // @Post()
+  // async createJob(@Body() job: ScheduledJob) {
+  //   return await this.scheduler.enqueue(job, () => { });
+  // }
 
   @Put(':id/run')
   async run(@Param('id') id: string) {

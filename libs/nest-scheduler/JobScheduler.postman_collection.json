@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "651aca6d-4ef8-4529-88a2-052dcaff830f",
+		"name": "JobScheduler",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all scheduled jobs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/scheduled-jobs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"scheduled-jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Disable a job",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/scheduled-jobs/{{job-id}}/disable",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"scheduled-jobs",
+						"{{job-id}}",
+						"disable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enable a job",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/scheduled-jobs/{{job-id}}/enable",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"scheduled-jobs",
+						"{{job-id}}",
+						"enable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run a job instantly",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/scheduled-jobs/{{job-id}}/run",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"scheduled-jobs",
+						"{{job-id}}",
+						"run"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

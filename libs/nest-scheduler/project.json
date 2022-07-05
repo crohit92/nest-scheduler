@@ -10,7 +10,7 @@
         "outputPath": "dist/libs/nest-scheduler",
         "main": "libs/nest-scheduler/src/index.ts",
         "tsConfig": "libs/nest-scheduler/tsconfig.lib.json",
-        "assets": ["libs/nest-scheduler/*.md"]
+        "assets": ["libs/nest-scheduler/*.md", "libs/nest-scheduler/JobScheduler.postman_collection.json"]
       }
     },
     "publish": {
