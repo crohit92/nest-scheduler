@@ -53,4 +53,4 @@ Setting up this library requires you to perform the following steps:
 When you start the target application which imports this package, a controller endpoint will get added 
 to the application.
 
-All the available endpoints in this controller can be found in [this](./src/JobScheduler.postman_collection.json) Postman collection
+All the available endpoints in this controller can be found in [this](https://github.com/crohit92/nest-scheduler/blob/master/libs/nest-scheduler/src/JobScheduler.postman_collection.json) Postman collection
