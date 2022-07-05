@@ -1,5 +1,9 @@
 {
   "name": "nest-job-scheduler",
-  "version": "0.0.1",
-  "type": "commonjs"
+  "version": "0.0.3",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crohit92/nest-scheduler"
+  }
 }
